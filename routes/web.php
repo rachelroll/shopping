@@ -15,3 +15,12 @@ Route::get('/', 'pagesController@root')->name('root');
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/email_verify_notice', 'pagesController@emailVerifyNotice')->name('email_verify_notice');
+    Route::group(['middleware' => 'email_verified'], function () {
+        Route::get('/test', function () {
+            return "your email is verified.";
+        });
+    });
+});
+
