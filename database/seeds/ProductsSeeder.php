@@ -17,9 +17,7 @@ class ProductsSeeder extends Seeder
         foreach($products as $product) {
             $skus = factory(\App\Models\ProductSku::class, 3)->create(['product_id' => $product->id]);
             // 找出价格最低的 SKU 价格，把商品价格设置为该价格
-            $product->update([
-                'price' => $skus->min('price'),
-            ]);
+            $product->update(['price' => $skus->min('price')]);
         }
     }
 }
