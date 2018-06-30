@@ -125,6 +125,9 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+
+    'order_ttl' => 1800,
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

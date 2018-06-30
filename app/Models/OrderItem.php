@@ -12,6 +12,7 @@ class OrderItem extends Model
         'rating',
         'review',
         'reviewed_at',
+        'price',
 
     ];
 
