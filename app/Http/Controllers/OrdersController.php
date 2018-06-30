@@ -73,7 +73,8 @@ class OrdersController extends Controller
 
     public function index(Request $request)
     {
-        $orders = Order::query()// 使用 with 方法预加载，避免N + 1问题
+        $orders = Order::query()
+            // 使用 with 方法预加载，避免N + 1问题
         ->with([
             'items.product',
             'items.productSku',
@@ -83,4 +84,29 @@ class OrdersController extends Controller
             'orders' => $orders,
         ]);
     }
+
+    public function show(Request $request, Order $order)
+    {
+        $this->authorize('own', $order);
+
+        return view('orders.show', [
+            'order' => $order->load([
+                'items.product',
+                'items.productSku',
+            ]),
+        ]);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
