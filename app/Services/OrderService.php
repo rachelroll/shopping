@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Exceptions\InternalException;
 use App\Exceptions\InvalidRequestException;
 use App\Jobs\CloseOrder;
+use App\Models\Order;
 use App\Models\ProductSku;
 use App\Models\User;
 use App\Models\UserAddress;
@@ -14,9 +15,11 @@ Class OrderService
 
     public function store(User $user, UserAddress $address, $items, $remark)
     {
+
         // 开启一个数据库事务
         $order = \DB::transaction(function () use ($user, $address, $remark, $items)
         {
+
             // 更新此地址的最后使用时间
             $address->update([
                 'last_used_at' => Carbon::now(),
@@ -60,8 +63,9 @@ Class OrderService
 
             // 更新订单总金额
             $order->update([
-                'totalAmount' => $totalAmount,
+                'total_amount' => $totalAmount,
             ]);
+
 
             // 将下单的商品从购物车中移除
             $skuIds = collect($items)->pluck('sku_id')->all();

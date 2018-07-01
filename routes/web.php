@@ -38,18 +38,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('orders', 'OrdersController@store')->name('orders.store');
         Route::get('orders', 'OrdersController@index')->name('orders.index');
         Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+        Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
+
     });
 });
 
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
+
 Route::get('/products/{product}', 'ProductsController@show')->name('products.show');
 
-Route::get('alipay', function () {
-    return app('alipay')->web([
-        'out_trade_no' => 2342342342342,
-        'total_amount' => '1',
-        'subject' => 'test subject - 测试',
-    ]);
-});
+Route::get('orders/{order}/payment', 'PaymentController@payByAlipay')->name('payment.alipay');
 
 
 

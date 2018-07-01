@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\CartItem;
+use Illuminate\Support\Facades\Auth;
 
 class CartService
 {
@@ -16,7 +17,7 @@ class CartService
     {
         $user = Auth::user();
         // 从数据库中查询该商品是否已经在购物车中
-        if ($item = $user->cartItmes()->where('product_sku_id', $skuId)->first()) {
+        if ($item = $user->cartItems()->where('product_sku_id', $skuId)->first()) {
             // 如果存在则直接叠加商品数量
             $item->update([
                 'amount' => $item->amount + $amount,
