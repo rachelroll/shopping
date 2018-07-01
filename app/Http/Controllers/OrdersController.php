@@ -7,6 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\Http\Requests\Request;
 use App\Jobs\CloseOrder;
 use App\Models\ProductSku;
+use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\Order;
 use App\Services\CartService;

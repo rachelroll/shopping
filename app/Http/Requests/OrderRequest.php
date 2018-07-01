@@ -11,6 +11,7 @@ class OrderRequest extends Request
 
     public function rules()
     {
+        dd(request()->all());
         return [
             // 判断用户提交的地址 ID 是否存在于数据库并且属于当前用户
             // 后面这个条件非常重要，否则恶意用户可以用不同的地址 ID 不断提交订单来遍历出平台所有用户的收货地址
@@ -28,6 +29,7 @@ class OrderRequest extends Request
                     if ($sku->stock === 0) {
                         $fail('该商品已售完');
                     }
+
                     // 获取当前索引
                     preg_match('/items\.(\d+)\.sku_id/', $attribute, $m);
                     $index  = $m[1];
