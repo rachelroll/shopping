@@ -27,7 +27,7 @@ class Order extends Model
 
     public static $shipStatusMAP = [
         self::SHIP_STATUS_PENDING => '未发货',
-        self::SHIP_STATUS_DELIVERED => '已发货',
+        self::SHIP_STATUS_DELIVERED => '已发货r',
         self::SHIP_STATUS_RECEIVED => '已收货',
     ];
 
