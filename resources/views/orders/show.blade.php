@@ -61,7 +61,7 @@
                             @if($order->paid_at && $order->refund_status !== \App\Models\Order::REFUND_STATUS_PENDING)
                                 <div class="line">
                                     <div class="line-label">退款状态：</div>
-                                    <div class="line-value">{{ \App\Models\Order::$refundStatusMAP[$order->refund_status] }}</div>
+                                    <div class="line-value">{{ \App\Models\Order::$refundStatusMap[$order->refund_status] }}</div>
                                 </div>
                                 <div class="line">
                                     <div class="line-label">退款理由：</div>
@@ -74,6 +74,7 @@
                                 <span>订单总价：</span>
                                 <div class="value">￥{{ $order->total_amount }}</div>
                             </div>
+
                             <div>
                                 <span>订单状态：</span>
                                 <div class="value">
@@ -102,6 +103,13 @@
                                     </div>
                                 @endif
                             </div>
+
+                            @if(isset($order->extra['refund_disagree_reason']))
+                                <div>
+                                    <span>拒绝退款理由：</span>
+                                    <div class="value">{{ $order->extra['refund_disagree_reason'] }}</div>
+                                </div>
+                            @endif
                             <!-- 支付按钮开始 -->
                             @if(!$order->paid_at && !$order->closed)
                                 <div class="payment-buttons">

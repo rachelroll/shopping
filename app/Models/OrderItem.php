@@ -35,6 +35,6 @@ class OrderItem extends Model
 
     public function order()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Order::class);
     }
 }
