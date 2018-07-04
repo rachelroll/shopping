@@ -139,6 +139,12 @@
 
             // 监听创建订单按钮的点击事件
             $('.btn-create-order').click(function () {
+                var req = {
+                    address_id: $('#order-form').find('select[name=address]').val(),
+                    items: [],
+                    remark: $('#order-form').find('textarea[name=remark]').val(),
+                    coupon_code: $('input[name=coupon_code]').val(), // 从优惠码输入框中获取优惠码
+                };
                 // 构建请求参数，将用户选择的地址的 id 和备注内容写入请求参数
                 var req = {
                     address_id: $('#order-form').find('select[name=address]').val(),
@@ -228,7 +234,9 @@
                 $('#btn-check-coupon').show(); // 显示 检查 按钮
             });
 
-            
+
+
+
         });
     </script>
 @endsection
